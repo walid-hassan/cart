@@ -10,12 +10,12 @@ document.getElementById('productNum-decrease').addEventListener('click', functio
     
     document.getElementById('productNum').value = newAmount;
  
-    const iphonePrice = parseInt(document.getElementById('iphoneValue').innerText);
+    const iphonePrice = stringToNumFromHtml('iphoneValue');
     document.getElementById('iphoneValue').innerText = iphonePrice - 1219 ;
 
 
-    const one = parseInt(document.getElementById('iphoneValue').innerText) ;
-    const two = parseInt(document.getElementById('caseAmount').innerText)
+    const one =  stringToNumFromHtml('iphoneValue');
+    const two = stringToNumFromHtml('caseAmount');
     document.getElementById('subtotal').innerText = one + two;
 
     const sub =  parseInt(document.getElementById('subtotal').innerText);
@@ -67,21 +67,26 @@ document.getElementById('caseNum').addEventListener('input', function () {
     const productNum = convertstring('caseNum');
     document.getElementById('caseAmount').innerText = 59 * productNum;
 
-    const one = parseInt(document.getElementById('iphoneValue').innerText) ;
-    const two = parseInt(document.getElementById('caseAmount').innerText)
+    const one =  stringToNumFromHtml('iphoneValue');
+    const two = stringToNumFromHtml('caseAmount');
     document.getElementById('subtotal').innerText = one + two;
 
 
-    const sub =  parseInt(document.getElementById('subtotal').innerText);
-    const taxnum = parseInt(document.getElementById('tax').innerText);
+    const sub = stringToNumFromHtml('subtotal');
+    const taxnum = stringToNumFromHtml('tax');
     const tax = (sub / 100) * 3 ;
     document.getElementById('tax').innerText = Math.round(tax);
-    const taxAmount = parseInt(document.getElementById('tax').innerText);
+    const taxAmount = stringToNumFromHtml('tax');
     document.getElementById('total').innerText = taxAmount + sub;
 })
 function convertstring(id){
     const num = parseInt(document.getElementById(id).value);
     return num;
+}
+
+function stringToNumFromHtml(id){
+    const result =  parseInt(document.getElementById(id).innerText);
+    return result;
 }
 
 document.getElementById('caseNumDecrease').addEventListener('click', function(){
